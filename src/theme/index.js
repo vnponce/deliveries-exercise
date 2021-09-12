@@ -1,7 +1,9 @@
 export const colors = {
   white: '#fff',
   black: '#000',
-  green: '#307460',
+  inputBorder: 'rgba(0, 0, 0, 0.15)',
+  inputPlaceHolder: 'rgba(0, 0, 0, 0.5)',
+  primary: '#307460',
 };
 
 export const spacing = {
@@ -15,7 +17,7 @@ export const spacing = {
 };
 
 export const borderRadius = {
-  main: 4,
+  main: '4px',
 };
 
 export const boxShadow = {

@@ -24,6 +24,9 @@ module.exports = {
   rules: {
     'react/jsx-filename-extension': [0],
     'react/react-in-jsx-scope': 'off',
+    'react/require-default-props': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/no-unescaped-entities': 'off',
     // cypress
     'cypress/no-unnecessary-waiting': 'error',
   },
