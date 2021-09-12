@@ -9,6 +9,7 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
+    'plugin:cypress/recommended',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -24,7 +25,7 @@ module.exports = {
     'react/jsx-filename-extension': [0],
     'react/react-in-jsx-scope': 'off',
     // cypress
-    // 'cypress/no-unnecessary-waiting': 'error',
+    'cypress/no-unnecessary-waiting': 'error',
   },
   settings: {
     'import/resolver': {
