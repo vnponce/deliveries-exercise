@@ -1,89 +1,55 @@
-import * as React from 'react';
+import React from 'react';
+import { H1, H2 } from 'theme/Typography';
+import TextField from 'components/TextField';
+import Button from 'components/Button';
+import shipmentsData from 'data/shipments';
+import User from 'svgs/icons/User';
+import SelectField from 'components/SelectField';
+import { useHistory } from 'react-router-dom';
 import {
-  ActionsWrapper, HeaderWrapper, SectionTitlesWrapper, ListWrapper,
+  ActionsWrapper,
+  HeaderWrapper,
+  SectionTitlesWrapper,
+  TableStyled,
+  SearchWrapper,
+  NewDeliveryButtonWrapper,
+  ListItemWrapper,
+  CellWrapper,
+  ValueCellStyled,
+  LabelCellStyled,
+  ActionWrapper,
+  TableWrapper,
+  CaptionStyled,
 } from './ShipmentsStyled';
-import { H1, H2 } from '../../theme/Typography';
-// import PropTypes from 'prop-types';
-
-const data = [
-  {
-    orderId: '001-300FCT',
-    status: 'Ready',
-    droneId: 'DJI-004Q',
-    platform: 'Alpha',
-    technician: 'Ernesto Garcia',
-    checkStatus: 'Passed',
-  },
-  {
-    orderId: '002-300FCT',
-    status: 'Ready',
-    droneId: 'DJI-004Q',
-    platform: 'Alpha',
-    technician: 'Jessica Salinas',
-    checkStatus: 'Passed',
-  },
-  {
-    orderId: '003-300FCT',
-    status: 'Ready',
-    droneId: 'DJI-004Q',
-    platform: 'Beta',
-    technician: 'Mariano Arribas',
-    checkStatus: 'Passed',
-  },
-  {
-    orderId: '004-300FCT',
-    status: 'Ready',
-    droneId: 'DJI-004Q',
-    platform: 'Beta',
-    technician: 'Miguel Obregón',
-    checkStatus: 'Passed',
-  },
-  {
-    orderId: '005-300FCT',
-    status: 'Ready',
-    droneId: 'DJI-004Q',
-    platform: 'Beta',
-    technician: 'Leonardo Flores',
-    checkStatus: 'Passed',
-  },
-  {
-    orderId: '006-300FCT',
-    status: 'Ready',
-    droneId: 'DJI-004Q',
-    platform: 'Beta',
-    technician: 'Gerardo Torres',
-    checkStatus: 'Passed',
-  },
-  {
-    orderId: '007-300FCT',
-    status: 'Ready',
-    droneId: 'DJI-004Q',
-    platform: 'Gamma',
-    technician: 'Shan Smith',
-    checkStatus: 'Passed',
-  },
-  {
-    orderId: '008-300FCT',
-    status: 'Ready',
-    droneId: 'DJI-004Q',
-    platform: 'Gamma',
-    technician: 'Juan Reynosa',
-    checkStatus: 'Passed',
-  },
-  {
-    orderId: '009-300FCT',
-    status: 'Ready',
-    droneId: 'DJI-004Q',
-    platform: 'Gamma',
-    technician: 'Ben Santana',
-    checkStatus: 'Passed',
-  },
-];
 
 const Shipments = () => {
-  // console.log('data =>', data);
-  // eslint-disable-next-line no-unused-vars
-  const a = 0;
+  const history = useHistory();
+  const columns = [
+    {
+      key: 'status',
+      label: 'Status',
+    },
+    {
+      key: 'orderId',
+      label: 'Order ID',
+    },
+    {
+      key: 'technician',
+      label: 'Technician',
+    },
+    {
+      key: 'platform',
+      label: 'Platform',
+    },
+    {
+      key: 'drone',
+      label: 'Drone',
+    },
+    {
+      key: 'technicalCheck',
+      label: 'Technical Tech',
+    },
+  ];
   return (
     <>
       <HeaderWrapper>
@@ -92,13 +58,44 @@ const Shipments = () => {
           <H2>History</H2>
         </SectionTitlesWrapper>
         <ActionsWrapper>
-          <p>Search</p>
-          <p>Button</p>
+          <SearchWrapper>
+            <TextField id="search" name="search" label="Search" searchIcon />
+          </SearchWrapper>
+          <NewDeliveryButtonWrapper>
+            <Button variant="primary" onClick={() => console.log('create new one')}>New delivery</Button>
+          </NewDeliveryButtonWrapper>
         </ActionsWrapper>
       </HeaderWrapper>
-      <ListWrapper>
-        {data.map((item) => <li>{item.status}</li>)}
-      </ListWrapper>
+      <TableWrapper>
+        <TableStyled data-testid="shipments">
+          <CaptionStyled>shipments</CaptionStyled>
+          {shipmentsData.reverse().map((item) => (
+            <ListItemWrapper data-testid={item.orderId}>
+              {columns.map(({ key, label }) => (
+                <CellWrapper>
+                  <LabelCellStyled>{label}</LabelCellStyled>
+                  <ValueCellStyled>{item[key]}</ValueCellStyled>
+                </CellWrapper>
+              ))}
+              <ActionsWrapper>
+                <ActionWrapper>
+                  <Button onClick={() => history.push(`/shipment/${item.orderId}`)}>
+                    Details
+                    <User />
+                  </Button>
+                </ActionWrapper>
+                <ActionWrapper>
+                  <SelectField label="Actions">
+                    <option value="">Actions</option>
+                    <option value="edit">Edit</option>
+                    <option value="remove">Remove</option>
+                  </SelectField>
+                </ActionWrapper>
+              </ActionsWrapper>
+            </ListItemWrapper>
+          ))}
+        </TableStyled>
+      </TableWrapper>
     </>
   );
 };

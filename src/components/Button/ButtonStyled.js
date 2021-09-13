@@ -6,6 +6,9 @@ import {
 // eslint-disable-next-line import/prefer-default-export
 export const ButtonStyled = styled.button`
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
   padding: ${spacing.miny} ${spacing.main};
   border: 1px solid ${colors.inputBorder};
   border-radius: ${borderRadius.main};

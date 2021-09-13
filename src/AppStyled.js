@@ -27,11 +27,6 @@ export const MainStyled = styled.main`
   margin-top: ${spacing.xLarge};
 `;
 
-export const HeaderStyled = styled.header`
-  display: flex;
-  justify-content: space-between;
-`;
-
 export const FooterStyled = styled.footer`
   display: flex;
   justify-content: space-between;

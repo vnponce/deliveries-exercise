@@ -15,10 +15,24 @@ describe('Delivery history', () => {
       name: /new deliver/i,
     });
 
-    // note: no es tabla porque todos tienen como un labek en cada valor,
-    // por eso no lo tomaré como table si no como un list
-    cy.findByRole('table', {
-      name: /deliveries/i,
+    cy.findByTestId(/shipments/i)
+      .find('tr:first-of-type')
+      .should('have.attr', 'data-testid', '009-300FCT');
+    // encontrar la manera de poner el data-testid nosotros en el test
+    // esto debe ser con el contextApi
+    // y uno debe estar loggeado
+  });
+  it.only('should show delivery details when user clicks on Details button', () => {
+    cy.visit('/shipments');
+    cy.findByTestId(/009-300FCT/i).within(() => {
+      cy.findByRole('button', {
+        name: /details/i,
+      }).click();
+    });
+    cy.url().should('include', '/shipment/009-300FCT');
+    cy.findByRole('heading', {
+      level: 1,
+      name: /009-300FCT/i,
     });
   });
 });

@@ -1,23 +1,43 @@
 import {
-  AppStyled, HeaderStyled, MainStyled, FooterStyled,
+  AppStyled, MainStyled, FooterStyled,
 } from 'AppStyled';
-import { H3 } from 'theme/Typography';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  // Link,
+} from 'react-router-dom';
 import Shipments from './pages/Shipments';
+import Header from './components/Header';
+import Shipment from './pages/Shipment';
 
 function App() {
   return (
-    <AppStyled>
-      <HeaderStyled>
-        <H3>Dronocargo</H3>
-      </HeaderStyled>
-      <MainStyled>
-        <Shipments />
-      </MainStyled>
-      <FooterStyled>
-        <p>Powered by Nuvo Cargo</p>
-        <p>Help</p>
-      </FooterStyled>
-    </AppStyled>
+    <Router>
+      <AppStyled>
+        <Header />
+        <MainStyled>
+          <Switch>
+            <Route path="/shipment/:shipmentId">
+              <Shipment />
+            </Route>
+            <Route path="/shipments">
+              <Shipments />
+            </Route>
+            {/* <Route path="/users"> */}
+            {/*  <Users /> */}
+            {/* </Route> */}
+            {/* <Route path="/"> */}
+            {/*  <Home /> */}
+            {/* </Route> */}
+          </Switch>
+        </MainStyled>
+        <FooterStyled>
+          <p>Powered by Nuvo Cargo</p>
+          <p>Help</p>
+        </FooterStyled>
+      </AppStyled>
+    </Router>
   );
 }
 

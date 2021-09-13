@@ -30,7 +30,7 @@ export const SelectFieldStyled = styled.select`
   width: 100%;
   border: 1px solid ${colors.inputBorder};
   display: flex;
-  padding: ${spacing.miny} ${spacing.miny};
+  padding: ${spacing.miny} ${spacing.main};
   border-radius: ${borderRadius.main};
   box-shadow: ${boxShadow.main};
   min-height: 36px;
