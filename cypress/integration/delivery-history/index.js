@@ -143,7 +143,7 @@ describe('Delivery history', () => {
 
       cy.findByRole('button', {
         name: /create new delivery/i,
-      });
+      }).click();
     });
     // validate it is in the store api
     cy.storeHas({

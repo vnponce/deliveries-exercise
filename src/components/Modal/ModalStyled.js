@@ -22,7 +22,7 @@ export const DialogTitleStyled = withStyles({
 
 export const StyledDialogContent = withStyles({
   root: {
-    padding: `0 ${spacing.large}`,
+    padding: `auto ${spacing.large}`,
     fontFamily: fontFamily.main,
   },
 })(DialogContent);

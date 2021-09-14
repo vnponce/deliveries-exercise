@@ -48,9 +48,7 @@ const columns = [
 ];
 
 const Shipments = () => {
-  const {
-    shipments,
-  } = useContext(GlobalContext);
+  const { shipments } = useContext(GlobalContext);
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>

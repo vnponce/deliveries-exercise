@@ -30,5 +30,5 @@ Cypress.Commands.add('storeHas', ({ value, property }) => {
   cy.window()
     .its('store')
     .its(property)
-    .should('equal', value);
+    .should('deep.equal', value);
 });

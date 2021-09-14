@@ -1,31 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import shipmentsData from 'data/shipments';
 
 const GlobalContext = React.createContext({});
 
 export function GlobalContextProvider({ children }) {
-  const [shipments, setShipments] = useState([...shipmentsData]);
+  const [shipments, setShipments] = useState([]);
+  // const [shipments, setShipments] = useState([]);
+
+  useEffect(() => {
+    // @todo: falta el local storage que debe ser prioridad en ambos casos si es que existe
+    setShipments(shipmentsData);
+    // expose store when run in Cypress
+    if (window.Cypress) {
+      const customShipmentsData = Cypress.env('customValues')?.shipments;
+      console.log('customShipmentsData =>', customShipmentsData);
+      setShipments(customShipmentsData || shipmentsData);
+    }
+  }, []);
 
   const saveShipment = (newShipment) => {
+    console.log('[saveShipment] shipments =>', shipments);
+    console.log('[saveShipment] saveShipment =>', newShipment);
     setShipments([...shipments, newShipment]);
   };
 
-  let value = {
+  const value = {
     shipments,
     saveShipment,
   };
   // expose store when run in Cypress
   if (window.Cypress) {
-    const customValues = Cypress.env('customValues');
-    // const customMeasurementValues = Cypress.env('customMeasurementValues');
-    // const customResultValues = Cypress.env('customResultsValues');
-    console.log(customValues);
-    value = {
-      ...value,
-      ...customValues,
-    };
-    console.log('values =>', value);
     window.store = {
       ...value,
     };
