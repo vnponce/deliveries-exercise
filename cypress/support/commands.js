@@ -25,3 +25,10 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 // eslint-disable-next-line import/no-extraneous-dependencies
 import '@testing-library/cypress/add-commands';
+
+Cypress.Commands.add('storeHas', ({ value, property }) => {
+  cy.window()
+    .its('store')
+    .its(property)
+    .should('equal', value);
+});

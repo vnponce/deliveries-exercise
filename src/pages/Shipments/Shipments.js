@@ -1,26 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { H1, H2 } from 'theme/Typography';
 import TextField from 'components/TextField';
 import Button from 'components/Button';
-import User from 'svgs/icons/User';
-import SelectField from 'components/SelectField';
-import { useHistory } from 'react-router-dom';
 import GlobalContext from 'context/GlobalContext';
 import {
   ActionsWrapper,
   HeaderWrapper,
   SectionTitlesWrapper,
-  TableStyled,
   SearchWrapper,
   NewDeliveryButtonWrapper,
-  ListItemWrapper,
-  CellWrapper,
-  ValueCellStyled,
-  LabelCellStyled,
-  ActionWrapper,
   TableWrapper,
-  CaptionStyled,
 } from './ShipmentsStyled';
+import ModalWrapper from './Wrappers/ModalWrapper';
+import Table from './Wrappers/Table';
 
 const sortFakeTimestamp = (a, b) => {
   if (a < b) return 1;
@@ -28,39 +20,41 @@ const sortFakeTimestamp = (a, b) => {
   return -1;
 };
 
+const columns = [
+  {
+    key: 'status',
+    label: 'Status',
+  },
+  {
+    key: 'orderId',
+    label: 'Order ID',
+  },
+  {
+    key: 'technician',
+    label: 'Technician',
+  },
+  {
+    key: 'platform',
+    label: 'Platform',
+  },
+  {
+    key: 'drone',
+    label: 'Drone',
+  },
+  {
+    key: 'technicalCheck',
+    label: 'Technical Tech',
+  },
+];
+
 const Shipments = () => {
-  const history = useHistory();
   const {
     shipments,
   } = useContext(GlobalContext);
-  const columns = [
-    {
-      key: 'status',
-      label: 'Status',
-    },
-    {
-      key: 'orderId',
-      label: 'Order ID',
-    },
-    {
-      key: 'technician',
-      label: 'Technician',
-    },
-    {
-      key: 'platform',
-      label: 'Platform',
-    },
-    {
-      key: 'drone',
-      label: 'Drone',
-    },
-    {
-      key: 'technicalCheck',
-      label: 'Technical Tech',
-    },
-  ];
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
+      <ModalWrapper isOpen={isOpen} setIsOpen={setIsOpen} />
       <HeaderWrapper>
         <SectionTitlesWrapper>
           <H1>Delivery</H1>
@@ -71,39 +65,12 @@ const Shipments = () => {
             <TextField id="search" name="search" label="Search" searchIcon />
           </SearchWrapper>
           <NewDeliveryButtonWrapper>
-            <Button variant="primary" onClick={() => console.log('create new one')}>New delivery</Button>
+            <Button variant="primary" onClick={() => setIsOpen(true)}>New delivery</Button>
           </NewDeliveryButtonWrapper>
         </ActionsWrapper>
       </HeaderWrapper>
       <TableWrapper>
-        <TableStyled data-testid="shipments">
-          <CaptionStyled>shipments</CaptionStyled>
-          {shipments.sort(sortFakeTimestamp).map((item) => (
-            <ListItemWrapper data-testid={item.orderId}>
-              {columns.map(({ key, label }) => (
-                <CellWrapper>
-                  <LabelCellStyled>{label}</LabelCellStyled>
-                  <ValueCellStyled>{item[key]}</ValueCellStyled>
-                </CellWrapper>
-              ))}
-              <ActionsWrapper>
-                <ActionWrapper>
-                  <Button onClick={() => history.push(`/shipment/${item.orderId}`)}>
-                    Details
-                    <User />
-                  </Button>
-                </ActionWrapper>
-                <ActionWrapper>
-                  <SelectField label="Actions">
-                    <option value="">Actions</option>
-                    <option value="edit">Edit</option>
-                    <option value="remove">Remove</option>
-                  </SelectField>
-                </ActionWrapper>
-              </ActionsWrapper>
-            </ListItemWrapper>
-          ))}
-        </TableStyled>
+        <Table name="shipments" data={shipments.sort(sortFakeTimestamp)} columns={columns} />
       </TableWrapper>
     </>
   );

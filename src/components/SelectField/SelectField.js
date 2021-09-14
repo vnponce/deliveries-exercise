@@ -9,12 +9,13 @@ import {
 const SelectField = ({
   children,
   label,
+  id,
 }) => {
   console.log('abel');
   return (
     <SelectFieldWrapper>
-      <LabelStyled>{label}</LabelStyled>
-      <SelectFieldStyled>
+      <LabelStyled htmlFor={id}>{label}</LabelStyled>
+      <SelectFieldStyled id={id}>
         {children}
       </SelectFieldStyled>
     </SelectFieldWrapper>
@@ -24,6 +25,7 @@ const SelectField = ({
 SelectField.propTypes = {
   children: PropTypes.node.isRequired,
   label: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   // options: PropTypes.arrayOf({
   //   value: PropTypes.string.isRequired,
   //   label: PropTypes.oneOfType([

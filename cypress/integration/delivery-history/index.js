@@ -8,6 +8,7 @@ describe('Delivery history', () => {
         platform: 'Alpha',
         drone: 'DJI-004Q',
         technicalCheck: 'Passed',
+        fakeTimestamp: 1,
       }],
     });
 
@@ -102,6 +103,55 @@ describe('Delivery history', () => {
     cy.findByRole('heading', {
       level: 1,
       name: /custom-order-id/i,
+    });
+  });
+  it.only('should store new delivery in context api', () => {
+    const firstShipment = {
+      status: 'Ready',
+      orderId: 'custom-order-id',
+      technician: 'Johon Doe',
+      platform: 'Alpha',
+      drone: 'DJI-004Q',
+      technicalCheck: 'Passed',
+      fakeTimestamp: 1,
+    };
+    const newShipment = {
+      status: 'Pending',
+      orderId: 'new-order-id',
+      technician: 'Jane',
+      platform: 'Alpha',
+      drone: 'DJI-004Q',
+      technicalCheck: 'Passed',
+      fakeTimestamp: 2,
+    };
+    // having deliveries
+    Cypress.env('customValues', {
+      shipments: [firstShipment],
+    });
+    // click button add new dlicery
+    cy.visit('/shipments');
+
+    cy.findByRole('button', {
+      name: /new deliver/i,
+    }).click();
+
+    cy.findByRole('presentation').within(() => {
+      cy.findByLabelText(/order id/i).type(newShipment.orderId);
+      cy.findByLabelText(/technician/i).type(newShipment.technician);
+      cy.findByLabelText(/platform/i).select(newShipment.platform);
+      cy.findByLabelText(/drone/i).select(newShipment.drone);
+
+      cy.findByRole('button', {
+        name: /create new delivery/i,
+      });
+    });
+    // validate it is in the store api
+    cy.storeHas({
+      property: 'shipments',
+      value: [
+        firstShipment,
+        newShipment,
+      ],
     });
   });
 });

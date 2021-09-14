@@ -18,7 +18,7 @@ const Modal = ({
   footerActions,
   width = 'md',
 }) => (
-  <DialogStyled role="dialog" fullWidth maxWidth={width} open={isOpen} onClose={handleClose} scroll="paper">
+  <DialogStyled fullWidth maxWidth={width} open={isOpen} onClose={handleClose} scroll="paper">
     <DialogTitleStyled onClose={handleClose}>
       <TitleStyled>
         {title}
