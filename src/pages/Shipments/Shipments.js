@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { H1, H2 } from 'theme/Typography';
 import TextField from 'components/TextField';
 import Button from 'components/Button';
-import shipmentsData from 'data/shipments';
 import User from 'svgs/icons/User';
 import SelectField from 'components/SelectField';
 import { useHistory } from 'react-router-dom';
+import GlobalContext from 'context/GlobalContext';
 import {
   ActionsWrapper,
   HeaderWrapper,
@@ -22,8 +22,17 @@ import {
   CaptionStyled,
 } from './ShipmentsStyled';
 
+const sortFakeTimestamp = (a, b) => {
+  if (a < b) return 1;
+  if (b < a) return 0;
+  return -1;
+};
+
 const Shipments = () => {
   const history = useHistory();
+  const {
+    shipments,
+  } = useContext(GlobalContext);
   const columns = [
     {
       key: 'status',
@@ -69,7 +78,7 @@ const Shipments = () => {
       <TableWrapper>
         <TableStyled data-testid="shipments">
           <CaptionStyled>shipments</CaptionStyled>
-          {shipmentsData.reverse().map((item) => (
+          {shipments.sort(sortFakeTimestamp).map((item) => (
             <ListItemWrapper data-testid={item.orderId}>
               {columns.map(({ key, label }) => (
                 <CellWrapper>

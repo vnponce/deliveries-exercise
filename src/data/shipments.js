@@ -6,6 +6,7 @@ const shipmentsData = [
     platform: 'Alpha',
     drone: 'DJI-004Q',
     technicalCheck: 'Passed',
+    fakeTimestamp: 1,
   },
   {
     status: 'Ready',
@@ -14,6 +15,7 @@ const shipmentsData = [
     platform: 'Alpha',
     drone: 'DJI-004Q',
     technicalCheck: 'Passed',
+    fakeTimestamp: 2,
   },
   {
     status: 'Ready',
@@ -22,6 +24,7 @@ const shipmentsData = [
     platform: 'Beta',
     drone: 'DJI-004Q',
     technicalCheck: 'Passed',
+    fakeTimestamp: 3,
   },
   {
     status: 'Ready',
@@ -30,6 +33,7 @@ const shipmentsData = [
     platform: 'Beta',
     drone: 'DJI-004Q',
     technicalCheck: 'Passed',
+    fakeTimestamp: 4,
   },
   {
     status: 'Ready',
@@ -38,6 +42,7 @@ const shipmentsData = [
     platform: 'Beta',
     drone: 'DJI-004Q',
     technicalCheck: 'Passed',
+    fakeTimestamp: 5,
   },
   {
     status: 'Ready',
@@ -46,6 +51,7 @@ const shipmentsData = [
     platform: 'Beta',
     drone: 'DJI-004Q',
     technicalCheck: 'Passed',
+    fakeTimestamp: 6,
   },
   {
     status: 'Ready',
@@ -54,6 +60,7 @@ const shipmentsData = [
     platform: 'Gamma',
     drone: 'DJI-004Q',
     technicalCheck: 'Passed',
+    fakeTimestamp: 7,
   },
   {
     status: 'Ready',
@@ -62,6 +69,7 @@ const shipmentsData = [
     platform: 'Gamma',
     drone: 'DJI-004Q',
     technicalCheck: 'Passed',
+    fakeTimestamp: 8,
   },
   {
     status: 'Ready',
@@ -70,6 +78,7 @@ const shipmentsData = [
     platform: 'Gamma',
     drone: 'DJI-004Q',
     technicalCheck: 'Passed',
+    fakeTimestamp: 9,
   },
 ];
 
