@@ -12,21 +12,15 @@ const TextField = React.forwardRef(({
   labelIsVisible = true,
   searchIcon = false,
   ...rest
-}, ref) => {
-  // const [isFocus, setIsFocus] = useState(false);
-  // pendiente ocultar el label
-  // poner el icono dinámico
-  console.log('abel');
-  return (
-    <TextFieldWrapper>
-      <LabelStyled htmlFor={id} isVisible={labelIsVisible}>{label}</LabelStyled>
-      <InputWrapper>
-        {searchIcon && <IconWrapper><Search /></IconWrapper>}
-        <InputStyled ref={ref} id={id} name={name} placeholder={label} {...rest} />
-      </InputWrapper>
-    </TextFieldWrapper>
-  );
-});
+}, ref) => (
+  <TextFieldWrapper>
+    <LabelStyled htmlFor={id} isVisible={labelIsVisible}>{label}</LabelStyled>
+    <InputWrapper>
+      {searchIcon && <IconWrapper><Search /></IconWrapper>}
+      <InputStyled ref={ref} id={id} name={name} placeholder={label} {...rest} />
+    </InputWrapper>
+  </TextFieldWrapper>
+));
 
 TextField.propTypes = {
   id: PropTypes.string.isRequired,

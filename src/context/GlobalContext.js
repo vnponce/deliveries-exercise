@@ -14,14 +14,11 @@ export function GlobalContextProvider({ children }) {
     // expose store when run in Cypress
     if (window.Cypress) {
       const customShipmentsData = Cypress.env('customValues')?.shipments;
-      console.log('customShipmentsData =>', customShipmentsData);
       setShipments(customShipmentsData || shipmentsData);
     }
   }, []);
 
   const saveShipment = (newShipment) => {
-    console.log('[saveShipment] shipments =>', shipments);
-    console.log('[saveShipment] saveShipment =>', newShipment);
     setShipments([...shipments, newShipment]);
   };
 

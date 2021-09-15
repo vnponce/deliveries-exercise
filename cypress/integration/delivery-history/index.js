@@ -146,9 +146,18 @@ describe('Delivery history', () => {
     cy.storeHas({
       property: 'shipments',
       value: [
-        firstShipment,
         newShipment,
+        firstShipment,
       ],
     });
   });
+  // ver que esta el primero
+
+  // ver que esta en localstorage
+
+  // settear localstorage y ver que lo toma de ahí
+
+  // cerrar el modal y no pasa nada
+
+  // todos los campos requeridos
 });

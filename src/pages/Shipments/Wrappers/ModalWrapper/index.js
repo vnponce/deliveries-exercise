@@ -15,6 +15,9 @@ const ModalWrapper = ({ isOpen, setIsOpen }) => {
   const saveNewShipment = ({
     orderId, technician, platform, drone,
   }) => {
+    console.log('data =>', {
+      orderId, technician, platform, drone,
+    });
     saveShipment({
       status: 'Pending',
       orderId,

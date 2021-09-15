@@ -31,4 +31,8 @@ Cypress.Commands.add('storeHas', ({ value, property }) => {
     .its('store')
     .its(property)
     .should('deep.equal', value);
+  // .its(property).then((prop) => {
+  //   console.log('prop =>', prop);
+  //   console.log('value =>', value);
+  // });
 });
