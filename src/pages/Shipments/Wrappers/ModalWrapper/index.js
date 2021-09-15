@@ -1,23 +1,22 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'components/Modal';
-import Button from 'components/Button';
 import TextField from 'components/TextField';
 import SelectField from 'components/SelectField';
 import GlobalContext from 'context/GlobalContext';
 import { useForm } from 'react-hook-form';
-import { FormStyled, CopyWrapper } from './ModalWrapperStyled';
+import Button from 'components/Button';
+import {
+  FormStyled, CopyWrapper,
+} from './ModalWrapperStyled';
 
 const ModalWrapper = ({ isOpen, setIsOpen }) => {
   const { shipments, saveShipment } = useContext(GlobalContext);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const saveNewShipment = ({
     orderId, technician, platform, drone,
   }) => {
-    console.log('data =>', {
-      orderId, technician, platform, drone,
-    });
     saveShipment({
       status: 'Pending',
       orderId,
@@ -30,15 +29,41 @@ const ModalWrapper = ({ isOpen, setIsOpen }) => {
     setIsOpen(false);
   };
 
+  const cancelNewShipment = () => {
+    reset({
+      orderId: '',
+      technician: '',
+      platform: 'Theta',
+      drone: 'DJI-004Q',
+    }, {
+      keepErrors: true,
+      keepDirty: true,
+      keepIsSubmitted: false,
+      keepTouched: false,
+      keepIsValid: false,
+      keepSubmitCount: false,
+    });
+    setIsOpen(false);
+  };
+
   return (
     <Modal
       isOpen={isOpen}
       title="New delivery"
       handleClose={() => setIsOpen(false)}
       footerActions={(
-        <Button onClick={handleSubmit(saveNewShipment)} variant="primary">
-          Create new delivery
-        </Button>
+        <>
+          <span>
+            <Button onClick={cancelNewShipment}>
+              Cancel
+            </Button>
+          </span>
+          <span>
+            <Button onClick={handleSubmit(saveNewShipment)} variant="primary">
+              Create new delivery
+            </Button>
+          </span>
+        </>
       )}
     >
       <CopyWrapper>
