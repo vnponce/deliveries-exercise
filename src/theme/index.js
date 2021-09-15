@@ -4,6 +4,7 @@ export const colors = {
   inputBorder: 'rgba(0, 0, 0, 0.15)',
   inputPlaceHolder: 'rgba(0, 0, 0, 0.5)',
   primary: '#307460',
+  danger: '#dc3545',
 };
 
 export const spacing = {

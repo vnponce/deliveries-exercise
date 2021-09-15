@@ -12,7 +12,9 @@ import {
 
 const ModalWrapper = ({ isOpen, setIsOpen }) => {
   const { shipments, saveShipment } = useContext(GlobalContext);
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register, handleSubmit, reset, formState: { errors },
+  } = useForm();
 
   const saveNewShipment = ({
     orderId, technician, platform, drone,
@@ -71,9 +73,25 @@ const ModalWrapper = ({ isOpen, setIsOpen }) => {
         All elements are mandatory.
       </CopyWrapper>
       <FormStyled>
-        <TextField label="Order Id" id="orderId" {...register('orderId')} />
-        <TextField label="Technician" id="technician" searchIcon {...register('technician')} />
-        <SelectField label="Platform" id="platform" {...register('platform')}>
+        <TextField
+          label="Order Id"
+          id="orderId"
+          error={errors && errors.orderId}
+          {...register('orderId', { required: 'Order Id is required.' })}
+        />
+        <TextField
+          label="Technician"
+          id="technician"
+          searchIcon
+          error={errors && errors.technician}
+          {...register('technician', { required: 'Technician is required.' })}
+        />
+        <SelectField
+          label="Platform"
+          id="platfor
+        m"
+          {...register('platform')}
+        >
           <option value="Theta">Theta</option>
           <option value="Alpha">Alpha</option>
         </SelectField>

@@ -134,7 +134,7 @@ describe('Add new shipment', () => {
   });
 
   // todos los campos requeridos
-  it.only('should show error messages for required fields', () => {
+  it('should show error messages for required fields', () => {
     // having deliveries
     Cypress.env('customValues', {
       shipments: [firstShipment],
@@ -151,7 +151,7 @@ describe('Add new shipment', () => {
       }).click();
 
       cy.findByRole('alert', {
-        name: /order id required/i,
+        name: /order id is required/i,
       });
       cy.findByRole('alert', {
         name: /technician is required/i,

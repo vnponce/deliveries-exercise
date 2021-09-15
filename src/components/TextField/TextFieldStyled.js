@@ -51,3 +51,9 @@ export const InputStyled = styled.input`
     outline: 0;
   }
 `;
+
+export const ErrorStyled = styled.p`
+  margin: 0;
+  padding: 0;
+  color: ${colors.danger};
+`;
