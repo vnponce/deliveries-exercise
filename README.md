@@ -2,7 +2,7 @@
 
 **Project where you can see the list of shipments, create new shipment, while all shipment's data would be stored locally in localStorage.**
 
-###Technologies
+### Technologies
 - React
 - Cypress
 - React testing library
