@@ -78,9 +78,6 @@ describe('Delivery history', () => {
     cy.findByTestId(/shipments/i)
       .find('tr:first-of-type')
       .should('have.attr', 'data-testid', 'second-id');
-    // encontrar la manera de poner el data-testid nosotros en el test
-    // esto debe ser con el contextApi
-    // y uno debe estar loggeado
   });
   it('should show delivery details when user clicks on Details button', () => {
     Cypress.env('customValues', {
@@ -120,7 +117,7 @@ describe('Delivery history', () => {
       orderId: 'new-order-id',
       technician: 'Jane',
       platform: 'Alpha',
-      drone: 'DJI-004Q',
+      drone: 'DJI-005Q',
       technicalCheck: 'Passed',
       fakeTimestamp: 2,
     };

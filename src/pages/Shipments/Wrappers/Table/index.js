@@ -20,7 +20,7 @@ const Table = ({ name, data, columns }) => {
     <TableStyled data-testid={name}>
       <CaptionStyled>{name}</CaptionStyled>
       {data.map((item) => (
-        <ListItemWrapper data-testid={item.orderId}>
+        <ListItemWrapper data-testid={item.orderId} item={item}>
           {columns.map(({ key, label }) => (
             <CellWrapper>
               <LabelCellStyled>{label}</LabelCellStyled>

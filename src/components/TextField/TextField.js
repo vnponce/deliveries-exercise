@@ -5,9 +5,9 @@ import {
   IconWrapper, InputStyled, LabelStyled, TextFieldWrapper,
 } from './TextFieldStyled';
 
-const TextField = ({
-  id, name, label, searchIcon = false,
-}) => {
+const TextField = React.forwardRef(({
+  id, name, label, searchIcon = false, ...rest
+}, ref) => {
   // const [isFocus, setIsFocus] = useState(false);
   // pendiente ocultar el label
   // poner el icono dinámico
@@ -16,10 +16,10 @@ const TextField = ({
     <TextFieldWrapper>
       <LabelStyled htmlFor={id}>{label}</LabelStyled>
       {searchIcon && <IconWrapper><Search /></IconWrapper>}
-      <InputStyled id={id} name={name} placeholder={label} />
+      <InputStyled ref={ref} id={id} name={name} placeholder={label} {...rest} />
     </TextFieldWrapper>
   );
-};
+});
 
 TextField.propTypes = {
   id: PropTypes.string.isRequired,

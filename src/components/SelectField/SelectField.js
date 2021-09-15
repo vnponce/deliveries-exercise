@@ -6,21 +6,19 @@ import {
   SelectFieldWrapper,
 } from './SelectFieldStyled';
 
-const SelectField = ({
+const SelectField = React.forwardRef(({
   children,
   label,
   id,
-}) => {
-  console.log('abel');
-  return (
-    <SelectFieldWrapper>
-      <LabelStyled htmlFor={id}>{label}</LabelStyled>
-      <SelectFieldStyled id={id}>
-        {children}
-      </SelectFieldStyled>
-    </SelectFieldWrapper>
-  );
-};
+  ...rest
+}, ref) => (
+  <SelectFieldWrapper>
+    <LabelStyled htmlFor={id}>{label}</LabelStyled>
+    <SelectFieldStyled id={id} ref={ref} {...rest}>
+      {children}
+    </SelectFieldStyled>
+  </SelectFieldWrapper>
+));
 
 SelectField.propTypes = {
   children: PropTypes.node.isRequired,

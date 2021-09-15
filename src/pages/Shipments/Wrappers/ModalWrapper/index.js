@@ -4,25 +4,30 @@ import Modal from 'components/Modal';
 import Button from 'components/Button';
 import TextField from 'components/TextField';
 import SelectField from 'components/SelectField';
+import GlobalContext from 'context/GlobalContext';
+import { useForm } from 'react-hook-form';
 import { FormStyled, CopyWrapper } from './ModalWrapperStyled';
-import GlobalContext from '../../../../context/GlobalContext';
 
 const ModalWrapper = ({ isOpen, setIsOpen }) => {
-  const { saveShipment } = useContext(GlobalContext);
-
-  // console.log('data =>', data);
   // eslint-disable-next-line no-unused-vars
-  const a = 0;
-  const saveNewShipment = () => {
+  const { shipments, saveShipment } = useContext(GlobalContext);
+  const { register, handleSubmit } = useForm();
+
+  const saveNewShipment = ({
+    orderId, technician, platform, drone,
+  }) => {
     // trigger react hook form
+    console.log('data =>', {
+      orderId, technician, platform, drone,
+    });
     saveShipment({
       status: 'Pending',
-      orderId: 'new-order-id',
-      technician: 'Jane',
-      platform: 'Alpha',
-      drone: 'DJI-004Q',
+      orderId,
+      technician,
+      platform,
+      drone,
       technicalCheck: 'Passed',
-      fakeTimestamp: 2,
+      fakeTimestamp: shipments.length + 1,
     });
     setIsOpen(false);
   };
@@ -33,7 +38,7 @@ const ModalWrapper = ({ isOpen, setIsOpen }) => {
       title="New delivery"
       handleClose={() => setIsOpen(false)}
       footerActions={(
-        <Button onClick={saveNewShipment} variant="primary">
+        <Button onClick={handleSubmit(saveNewShipment)} variant="primary">
           Create new delivery
         </Button>
       )}
@@ -43,13 +48,13 @@ const ModalWrapper = ({ isOpen, setIsOpen }) => {
         All elements are mandatory.
       </CopyWrapper>
       <FormStyled>
-        <TextField label="Order Id" id="order-id" name="order-id" />
-        <TextField label="Technician" id="technician" name="technician" />
-        <SelectField label="Platform" id="platform">
+        <TextField label="Order Id" id="orderId" {...register('orderId')} />
+        <TextField label="Technician" id="technician" searchIcon {...register('technician')} />
+        <SelectField label="Platform" id="platform" {...register('platform')}>
           <option value="Theta">Theta</option>
           <option value="Alpha">Alpha</option>
         </SelectField>
-        <SelectField label="Drone" id="drone">
+        <SelectField label="Drone" id="drone" {...register('drone')}>
           <option value="DJI-004Q">DJI-004Q</option>
           <option value="DJI-005Q">DJI-005Q</option>
         </SelectField>

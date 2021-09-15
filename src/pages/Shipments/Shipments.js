@@ -15,8 +15,9 @@ import ModalWrapper from './Wrappers/ModalWrapper';
 import Table from './Wrappers/Table';
 
 const sortFakeTimestamp = (a, b) => {
-  if (a < b) return 1;
-  if (b < a) return 0;
+  console.log('sort =>', a, b);
+  if (a.fakeTimestamp < b.fakeTimestamp) return 1;
+  if (b.fakeTimestamp > a.fakeTimestamp) return 0;
   return -1;
 };
 

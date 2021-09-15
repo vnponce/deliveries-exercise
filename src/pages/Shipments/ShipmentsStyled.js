@@ -44,8 +44,8 @@ export const ListItemWrapper = styled.tr`
   display: flex;
   gap: ${spacing.xLarge}; 
   padding: ${spacing.large} 0;
-  border-top: 1px solid ${colors.inputBorder};
-  &:first-of-type {
+  border-bottom: 2px solid ${({ item }) => (item.status === 'Pending' ? colors.primary : colors.inputBorder)};
+  &:last-of-type {
     border: none;
   }
 `;
