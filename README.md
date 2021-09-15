@@ -1,6 +1,13 @@
 # Deliveries exercise using TDD
 
-### Project where you can see the list of shipments, create new shipment, while all shipment's data would be stored locally in localStorage.
+**Project where you can see the list of shipments, create new shipment, while all shipment's data would be stored locally in localStorage.**
+
+###Technologies
+- React
+- Cypress
+- React testing library
+- Storybook
+- styled-components
 
 ## Available Scripts
 
