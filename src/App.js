@@ -5,7 +5,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  // Link,
+  Redirect,
 } from 'react-router-dom';
 import Shipments from './pages/Shipments';
 import Header from './components/Header';
@@ -23,6 +23,9 @@ function App() {
             </Route>
             <Route path="/shipments">
               <Shipments />
+            </Route>
+            <Route path="/">
+              <Redirect to="/shipments" />
             </Route>
             {/* <Route path="/users"> */}
             {/*  <Users /> */}

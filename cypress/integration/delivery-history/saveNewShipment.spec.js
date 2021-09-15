@@ -116,6 +116,24 @@ describe('Add new shipment', () => {
   });
 
   // ver que esta en localstorage
+  it('should store new delivery in localStorage', () => {
+    // having deliveries
+    Cypress.env('customValues', {
+      shipments: [firstShipment],
+    });
+    // click button add new dlicery
+    cy.visit('/shipments');
+
+    createShipment();
+
+    // validate it is in the localstorage
+    cy.findByTestId('shipments').then(() => {
+      expect(localStorage.getItem('shipments')).to.deep.eq(JSON.stringify([
+        firstShipment,
+        newShipment,
+      ]));
+    });
+  });
 
   it('should show recently added shipment at beginning', () => {
     // having deliveries
@@ -133,7 +151,6 @@ describe('Add new shipment', () => {
       .should('have.attr', 'data-testid', newShipment.orderId);
   });
 
-  // todos los campos requeridos
   it('should show error messages for required fields', () => {
     // having deliveries
     Cypress.env('customValues', {

@@ -99,5 +99,45 @@ describe('Delivery history', () => {
       name: /custom-order-id/i,
     });
   });
-  // settear localstorage y ver que lo toma de ahí
+  it('should show local storage shipments', () => {
+    const shipments = [
+      {
+        status: 'Pending',
+        orderId: 'local-storage',
+        technician: 'Johon Doe',
+        platform: 'Alpha',
+        drone: 'DJI-004Q',
+        technicalCheck: 'Passed',
+        fakeTimestamp: 2,
+      },
+      {
+        status: 'Ready',
+        orderId: 'first-id',
+        technician: 'Jane',
+        platform: 'Alpha',
+        drone: 'DJI-004Q',
+        technicalCheck: 'Passed',
+        fakeTimestamp: 1,
+      },
+    ];
+    Cypress.env('customValues', {
+      shipments: [{
+        status: 'Ready',
+        orderId: 'first-id',
+        technician: 'Jane',
+        platform: 'Alpha',
+        drone: 'DJI-004Q',
+        technicalCheck: 'Passed',
+        fakeTimestamp: 1,
+      }],
+    });
+
+    localStorage.setItem('shipments', JSON.stringify(shipments));
+
+    cy.visit('/shipments');
+
+    cy.findByTestId(/shipments/i)
+      .find('tr:first-of-type')
+      .should('have.attr', 'data-testid', 'local-storage');
+  });
 });
