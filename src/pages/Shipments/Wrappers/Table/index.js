@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import User from 'svgs/icons/User';
 import { useHistory } from 'react-router-dom';
-import Button from '../../../../components/Button';
-import SelectField from '../../../../components/SelectField';
+import Details from 'svgs/icons/Details';
+import Button from 'components/Button';
+import SelectField from 'components/SelectField';
 import {
-  ActionsWrapper, ActionWrapper,
+  ActionsWrapper,
+  ActionWrapper,
   CaptionStyled,
   CellWrapper,
+  DetailsIconWrapper,
   LabelCellStyled,
   ListItemWrapper,
   TableStyled,
@@ -31,7 +33,9 @@ const Table = ({ name, data, columns }) => {
             <ActionWrapper>
               <Button onClick={() => history.push(`/shipment/${item.orderId}`)}>
                 Details
-                <User />
+                <DetailsIconWrapper>
+                  <Details />
+                </DetailsIconWrapper>
               </Button>
             </ActionWrapper>
             <ActionWrapper>

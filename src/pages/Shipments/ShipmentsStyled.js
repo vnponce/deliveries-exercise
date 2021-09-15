@@ -69,6 +69,8 @@ export const ActionsWrapper = styled.div`
 export const ActionWrapper = styled.div`
   max-width: 122px;
   flex: 1;
-  // display: flex;
-  // gap: ${spacing.miny};
+`;
+
+export const DetailsIconWrapper = styled.span`
+  margin-left: ${spacing.main};
 `;
