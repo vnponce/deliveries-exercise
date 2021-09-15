@@ -38,6 +38,7 @@ export const SelectFieldStyled = styled.select`
   box-shadow: ${boxShadow.main};
   min-height: 36px;
   box-sizing: border-box;
+  cursor: pointer;
 `;
 
 export const LabelStyled = styled.label`

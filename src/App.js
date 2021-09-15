@@ -27,12 +27,6 @@ function App() {
             <Route path="/">
               <Redirect to="/shipments" />
             </Route>
-            {/* <Route path="/users"> */}
-            {/*  <Users /> */}
-            {/* </Route> */}
-            {/* <Route path="/"> */}
-            {/*  <Home /> */}
-            {/* </Route> */}
           </Switch>
         </MainStyled>
         <FooterStyled>
