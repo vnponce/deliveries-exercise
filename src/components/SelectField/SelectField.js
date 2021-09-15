@@ -4,33 +4,31 @@ import {
   LabelStyled,
   SelectFieldStyled,
   SelectFieldWrapper,
+  InputWrapper,
 } from './SelectFieldStyled';
 
 const SelectField = React.forwardRef(({
   children,
   label,
+  labelIsVisible = true,
   id,
   ...rest
 }, ref) => (
   <SelectFieldWrapper>
-    <LabelStyled htmlFor={id}>{label}</LabelStyled>
-    <SelectFieldStyled id={id} ref={ref} {...rest}>
-      {children}
-    </SelectFieldStyled>
+    <LabelStyled htmlFor={id} isVisible={labelIsVisible}>{label}</LabelStyled>
+    <InputWrapper>
+      <SelectFieldStyled id={id} ref={ref} {...rest}>
+        {children}
+      </SelectFieldStyled>
+    </InputWrapper>
   </SelectFieldWrapper>
 ));
 
 SelectField.propTypes = {
   children: PropTypes.node.isRequired,
   label: PropTypes.string.isRequired,
+  labelIsVisible: PropTypes.bool,
   id: PropTypes.string.isRequired,
-  // options: PropTypes.arrayOf({
-  //   value: PropTypes.string.isRequired,
-  //   label: PropTypes.oneOfType([
-  //     PropTypes.string,
-  //     PropTypes.node,
-  //   ]),
-  // }).isRequired,
 };
 
 export default SelectField;

@@ -39,7 +39,7 @@ const Table = ({ name, data, columns }) => {
               </Button>
             </ActionWrapper>
             <ActionWrapper>
-              <SelectField id="actions" label="Actions">
+              <SelectField id="actions" label="Actions" labelIsVisible={false}>
                 <option value="">Actions</option>
                 <option value="edit">Edit</option>
                 <option value="remove">Remove</option>

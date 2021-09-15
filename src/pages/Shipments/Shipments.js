@@ -61,7 +61,7 @@ const Shipments = () => {
         </SectionTitlesWrapper>
         <ActionsWrapper>
           <SearchWrapper>
-            <TextField id="search" name="search" label="Search" searchIcon />
+            <TextField id="search" name="search" label="Search" labelIsVisible={false} searchIcon />
           </SearchWrapper>
           <NewDeliveryButtonWrapper>
             <Button variant="primary" onClick={() => setIsOpen(true)}>New delivery</Button>

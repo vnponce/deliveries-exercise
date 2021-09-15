@@ -1,10 +1,13 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import {
-  borderRadius, boxShadow, colors, spacing,
+  borderRadius, boxShadow, colors, fontFamily, fontSize, lineHeight, spacing,
 } from 'theme';
 
 export const TextFieldWrapper = styled.div`
   position: relative;
+`;
+
+export const InputWrapper = styled.div`
   border: 1px solid ${colors.inputBorder};
   display: flex;
   padding: ${spacing.miny} ${spacing.main};
@@ -16,12 +19,21 @@ export const TextFieldWrapper = styled.div`
 
 export const LabelStyled = styled.label`
   position: absolute;
-  top: -${spacing.main};
-  left: 0;
   display: block;
   visibility: hidden;
   width: 0;
   height: 0;
+
+  ${({ isVisible }) => isVisible && css`
+    font-family: ${fontFamily.main};
+    font-size: ${fontSize.small};
+    color: ${colors.inputPlaceHolder};
+    line-height: ${lineHeight.main};
+    position: relative;
+    width: auto;
+    height: auto;
+    visibility: visible;
+  `}
 `;
 
 export const IconWrapper = styled.div`

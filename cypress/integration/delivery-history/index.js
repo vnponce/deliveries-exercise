@@ -102,7 +102,7 @@ describe('Delivery history', () => {
       name: /custom-order-id/i,
     });
   });
-  it.only('should store new delivery in context api', () => {
+  it('should store new delivery in context api', () => {
     const firstShipment = {
       status: 'Ready',
       orderId: 'custom-order-id',

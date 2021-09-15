@@ -1,9 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import {
-  borderRadius, boxShadow, colors, spacing,
+  borderRadius, boxShadow, colors, fontFamily, fontSize, lineHeight, spacing,
 } from 'theme';
 
 export const SelectFieldWrapper = styled.div`
+`;
+
+export const InputWrapper = styled.div`
   &,
   &::before,
   &::after {
@@ -39,10 +42,19 @@ export const SelectFieldStyled = styled.select`
 
 export const LabelStyled = styled.label`
   position: absolute;
-  top: -${spacing.main};
-  left: 0;
   display: block;
   visibility: hidden;
   width: 0;
   height: 0;
+
+  ${({ isVisible }) => isVisible && css`
+    font-family: ${fontFamily.main};
+    font-size: ${fontSize.small};
+    color: ${colors.inputPlaceHolder};
+    line-height: ${lineHeight.main};
+    position: relative;
+    width: auto;
+    height: auto;
+    visibility: visible;
+  `}
 `;

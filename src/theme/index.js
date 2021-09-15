@@ -40,3 +40,7 @@ export const fontSize = {
   main: '16px',
   header: '30px',
 };
+
+export const lineHeight = {
+  main: '24px',
+};

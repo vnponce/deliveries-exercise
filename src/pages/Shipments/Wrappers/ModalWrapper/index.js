@@ -9,17 +9,12 @@ import { useForm } from 'react-hook-form';
 import { FormStyled, CopyWrapper } from './ModalWrapperStyled';
 
 const ModalWrapper = ({ isOpen, setIsOpen }) => {
-  // eslint-disable-next-line no-unused-vars
   const { shipments, saveShipment } = useContext(GlobalContext);
   const { register, handleSubmit } = useForm();
 
   const saveNewShipment = ({
     orderId, technician, platform, drone,
   }) => {
-    // trigger react hook form
-    console.log('data =>', {
-      orderId, technician, platform, drone,
-    });
     saveShipment({
       status: 'Pending',
       orderId,
