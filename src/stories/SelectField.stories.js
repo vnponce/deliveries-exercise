@@ -6,7 +6,6 @@ export default {
   title: 'Select Field',
   component: SelectField,
   argTypes: {
-    // backgroundColor: { control: 'color' },
     onClick: { action: 'onClick' },
   },
 };

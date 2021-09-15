@@ -115,7 +115,6 @@ describe('Add new shipment', () => {
     });
   });
 
-  // ver que esta en localstorage
   it('should store new delivery in localStorage', () => {
     // having deliveries
     Cypress.env('customValues', {

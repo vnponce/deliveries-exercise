@@ -88,8 +88,7 @@ const ModalWrapper = ({ isOpen, setIsOpen }) => {
         />
         <SelectField
           label="Platform"
-          id="platfor
-        m"
+          id="platform"
           {...register('platform')}
         >
           <option value="Theta">Theta</option>
